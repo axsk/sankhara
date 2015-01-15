@@ -1,0 +1,22 @@
+{
+  "name": "sankhara",
+  "description": "that which puts together",
+  "version": "0.1",
+  "permissions": [
+    "contextMenus", "http://*/*"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "sankhara browser action"
+  },  
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["contentscript.js"]
+    }
+  ],
+  "manifest_version": 2
+}
