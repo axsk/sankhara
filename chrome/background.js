@@ -12,10 +12,12 @@ chrome.runtime.onMessage.addListener(
         sendResponse(highlights)
   })
 
-testrange =   {start: {offset: 46, xpath:"/HTML[1]/BODY[1]/P[1]/text()[1]"}, end: {offset: 187, xpath: "/HTML[1]/BODY[1]/P[1]/text()[1]"}}
-  
+testrange =   {start: {offset: 20, xpath:"/HTML[1]/BODY[1]/P[1]/text()[1]"}, end: {offset: 30, xpath: "/HTML[1]/BODY[1]/P[1]/text()[1]"}}
+testrange2 = {start: {offset: 40, xpath:"/HTML[1]/BODY[1]/P[1]/text()[1]"}, end: {offset: 60, xpath: "/HTML[1]/BODY[1]/P[1]/text()[1]"}}
+
 ranges = []
 ranges.push(testrange)
+ranges.push(testrange2)
 
 function addHighlight(range) {
     ranges.push(range)
@@ -24,5 +26,3 @@ function addHighlight(range) {
 function getHighlights(url) {
     return ranges
 }
-
-

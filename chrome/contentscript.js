@@ -3,6 +3,7 @@ chrome.runtime.onMessage.addListener(
         if (request=="highlightSelected") {
         	selected = serializeSelection()        	
             sendResponse(selected)
+            updateHighlights([selected])
         }
     }
 )
@@ -16,16 +17,21 @@ function getHighlights() {
 
 function serializeSelection() {
 	selection = window.getSelection()
+    // alternatively hash each node by its content
     return serializeRange(selection.getRangeAt(0))
 }
 
 function updateHighlights(ranges) {
 	// remove old highlight spans
 	// insert new highlight spans
-	node = document.createElement("span")
-    node.style.backgroundColor = "yellow"
+	
+	for (var i=0, range; range = ranges[i]; i++) {
+		ranges[i] = deserializeRange(range)
+	}
+	
     for (var i=0, range; range = ranges[i]; i++) {
-		range = deserializeRange(range)
+    	node = document.createElement("span")
+    	node.style.backgroundColor = "yellow"
 		range.surroundContents(node)
     }	
 }
